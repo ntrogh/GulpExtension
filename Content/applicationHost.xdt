@@ -1,0 +1,21 @@
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+   <system.applicationHost>
+        <sites>
+          <site name="%XDT_SCMSITENAME%" xdt:Locator="Match(name)">
+           <application path="/GulpExtension" xdt:Locator="Match(path)" xdt:Transform="Remove" />
+           <application path="/GulpExtension"  applicationPool="%XDT_APPPOOLNAME%" xdt:Transform="Insert">
+              <virtualDirectory path="/" physicalPath="%XDT_EXTENSIONPATH%" />
+            </application>
+          </site>
+        </sites>
+  </system.applicationHost>
+  <system.webServer>
+    <runtime xdt:Transform="Insert" >
+         <environmentVariables>
+            <add name="APPSETTING_COMMAND" value="d:\home\SiteExtensions\GulpExtension\Hooks\deploy.cmd" />
+	          <add name="PATH" value="%PATH%;d:\home\SiteExtensions\GulpExtension\Commands" />
+            <add name="GULP_PATH" value="d:\home\SiteExtensions\GulpExtension\Commands\node_modules\.bin\gulp.cmd" />
+         </environmentVariables>
+    </runtime>
+   </system.webServer>
+</configuration>

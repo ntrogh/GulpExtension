@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+<metadata>
+<id>GulpExtension</id>
+<title>Gulp</title>
+<version>0.0.1</version>
+<authors>Nick Trogh</authors>
+<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+<projectUrl>https://github.com/SyntaxC4-MSFT/ComposerExtension</projectUrl>
+<requireLicenseAcceptance>false</requireLicenseAcceptance>
+<description>An extension which brings Gulp support to Azure Web Apps</description>
+<iconUrl>https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png</iconUrl>
+<tags>gulp build javascript</tags>
+</metadata>
+<files>
+  <file src="Content\**\*.*" target="Content" />
+</files>
+</package>

@@ -1,0 +1,83 @@
+<html>
+<head>
+  <meta name="description" content="An Azure Web App Site Extension for Gulp javascript build streaming">
+  <meta name="keywords" content="Gulp, Javascript, Build">
+  <meta name="author" content="Nick Trogh">
+
+  <title>Gulp - Site Extension</title>
+
+  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css" />
+</head>
+<body>
+
+<div class="alert alert-warning" style="text-align: center" role="alert"><strong>Notice:</strong> This Extension has implemented a custom deployment script via the <a href="https://github.com/projectkudu/kudu/wiki/Deployment-hooks">kudu deployment hook</a>. Please do not add a deployment hook, unless you copy the <a href="#GulpScript">code</a> below into it.</div>
+
+<div style="width: 790px;margin: auto auto;">
+
+<h1>Gulp Site Extension for Azure Web Apps.</h1>
+<p>This site extension enables Gulp support in Web Apps.</p>
+
+<h2 style="padding-bottom: 10px;">Usage</h2>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Command Line</h3>
+  </div>
+  <div class="panel-body">
+    <p>If you would like to manage Gulp from the command-line, you can use the <a href="/DebugConsole">DebugConsole</a> or <a href="https://www.npmjs.org/package/kuduexec" target="_new">KuduExec</a>.</p>
+  </div>
+<ul class="list-group">
+<li class="list-group-item"><strong>Run client-side build</strong><p><code>gulp [--gulpfile 'path to gulpfile.js']</code></p></li>
+</ul>
+</div>
+
+<a name="GulpScript"></a>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">On Deployment</h3>
+</div>
+<div class="panel-body">
+<p><code>Gulp</code> will be called on <em>Git Deployment</em> by <strong>default</strong>.</p>
+</div>
+<ul class="list-group">
+<li class="list-group-item">
+<strong>Customize the Deployment</strong>
+<p>If you would like to create a further customized deployment script, paste the following code into your deploy.cmd file before the <em>Deployment</em> section.</p>
+<p>
+<pre>
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Run client-side build process using Gulp
+:: ----------------------------------------
+
+echo Execute build tasks with Gulp
+call "%GULP_PATH%" --gulpfile "%DEPLOYMENT_SOURCE%\gulpfile.js"
+</pre>
+</p>
+</li>
+</ul>
+</div>
+
+<h2>Environment Variables</h2>
+<p>These are environment variables added by this site extension.</p>
+<table class="table table-hover" style="font-size:smaller;">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Info</th>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>d:\home\SiteExtensions\GulpExtension\Deployment\deploy.cmd</td>
+<td>Deployment Script which is replacing the default kudu deployment script.</td>
+</tr>
+<tr>
+<td>GULP_PATH</td>
+<td>d:\home\SiteExtensions\GulpExtension\Commands\node_modules\.bin\gulp.cmd</td>
+<td>Path to the Gulp executable in the site extension directory.</td>
+</tr>
+</table>
+
+</div>
+</body>
+</html>
